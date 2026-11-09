@@ -29,8 +29,8 @@ https://mermaid.live/.
 flowchart TD
    App --> SearchBar
    App --> MenuTable
-   MenuTable --> MenuCategory x3
-   MenuCategory --> MenuItemRow x10
+   MenuTable --> MenuCategory x 3
+   MenuCategory --> MenuItemRow x 10
 ```
 
 ## Стан
