@@ -1,17 +1,17 @@
-import MenuCategory from "./MenuCategory"
+import MenuCategory from './MenuCategory'
 
 export default function MenuTable({ menu }) {
-    return (
-      <table className="menu-table">
-        <thead>
-          <tr>
-            <th scope="col">Позиція</th>
-            <th scope="col">Ціна</th>
-          </tr>
-        </thead>
-        {menu.map((category) => (
-          <MenuCategory key={category.id} category={category} />
-        ))}
-      </table>
-    )
-  }
+  return (
+    <table className="menu-table">
+      <thead>
+        <tr>
+          <th scope="col">Позиція</th>
+          <th scope="col">Ціна</th>
+        </tr>
+      </thead>
+      {menu.map((category) => (
+        <MenuCategory key={category.id} category={category} />
+      ))}
+    </table>
+  )
+}
