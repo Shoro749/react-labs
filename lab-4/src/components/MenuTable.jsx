@@ -4,9 +4,7 @@ import { filterMenu } from '../filterMenu.js'
 export default function MenuTable({
   menu,
   filterText,
-  // setFilterText,
   inStockOnly,
-  // setInStockOnly,
 }) {
   const visibleMenu = filterMenu(menu, filterText, inStockOnly)
 
