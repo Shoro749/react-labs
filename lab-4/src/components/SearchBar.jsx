@@ -1,4 +1,9 @@
-export default function SearchBar({filterText, setFilterText, inStockOnly, setInStockOnly }) {
+export default function SearchBar({
+  filterText,
+  setFilterText,
+  inStockOnly,
+  setInStockOnly,
+}) {
   return (
     <search className="search-bar">
       <input
@@ -13,7 +18,7 @@ export default function SearchBar({filterText, setFilterText, inStockOnly, setIn
           type="checkbox"
           checked={inStockOnly}
           onChange={(e) => setInStockOnly(e.target.checked)}
-          />{' '}
+        />{' '}
         Лише в наявності
       </label>
     </search>

@@ -38,12 +38,12 @@ flowchart TD
 ```
 
 flowchart TD
-    App["App<br/><i>(стан: filterText, inStockOnly)</i>"]
-    SearchBar["SearchBar"]
-    MenuTable["MenuTable"]
-    CafeInfo["CafeInfo"]
-    MenuCategoryRow["MenuCategoryRow"]
-    MenuItemRow["MenuItemRow"]
+App["App<br/><i>(стан: filterText, inStockOnly)</i>"]
+SearchBar["SearchBar"]
+MenuTable["MenuTable"]
+CafeInfo["CafeInfo"]
+MenuCategoryRow["MenuCategoryRow"]
+MenuItemRow["MenuItemRow"]
 
     App -->|filterText, inStockOnly| SearchBar
     App -->|filterText, inStockOnly, items| MenuTable
