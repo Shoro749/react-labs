@@ -12,7 +12,8 @@ export default function SearchBar({filterText, setFilterText, inStockOnly, setIn
         <input
           type="checkbox"
           checked={inStockOnly}
-          onChange={(e) => setInStockOnly(e.target.checked)}/>
+          onChange={(e) => setInStockOnly(e.target.checked)}
+          />{' '}
         Лише в наявності
       </label>
     </search>
