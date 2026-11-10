@@ -30,24 +30,49 @@ https://denysmatsevych.github.io/web-development-2026/react/labs/lab-4/
 
 ```mermaid
 flowchart TD
-  App --> SearchBar
-  App --> MenuTable
-  App --> CafeInfo
-  MenuTable --> MenuCategory["MenuCategory × 3"]
-  MenuCategory --> MenuItemRow["MenuItemRow × 4, 3, 3"]
+    App["App"]
+    FilterableMenuTable["FilterableMenuTable<br/>(стан: filterText, inStockOnly)"]
+    SearchBar["SearchBar"]
+    MenuTable["MenuTable"]
+    CafeInfo["CafeInfo"]
+    MenuCategory["MenuCategory × 3"]
+    MenuItemRow["MenuItemRow"]
+
+    LocalStorage[("localStorage")]
+
+    App -->|menu| FilterableMenuTable
+
+    FilterableMenuTable -->|filterText, inStockOnly| SearchBar
+    FilterableMenuTable -->|menu, filterText, inStockOnly| MenuTable
+
+    SearchBar -.->|setFilterText, setInStockOnly| FilterableMenuTable
+
+    FilterableMenuTable -.->|збереження фільтрів| LocalStorage
+
+    App --> CafeInfo
+
+    MenuTable --> MenuCategory
+    MenuCategory --> MenuItemRow
 ```
 
-flowchart TD
-App["App<br/><i>(стан: filterText, inStockOnly)</i>"]
-SearchBar["SearchBar"]
-MenuTable["MenuTable"]
-CafeInfo["CafeInfo"]
-MenuCategoryRow["MenuCategoryRow"]
-MenuItemRow["MenuItemRow"]
+## Колокація стану
 
-    App -->|filterText, inStockOnly| SearchBar
-    App -->|filterText, inStockOnly, items| MenuTable
-    SearchBar -.->|onFilterTextChange, onInStockOnlyChange| App
+Порівняння повторного рендерингу компонентів під час зміни фільтрів.
 
-    MenuTable --> MenuCategoryRow
-    MenuTable --> MenuItemRow
+### До рефакторингу
+- App
+- SearchBar
+- MenuTable
+- MenuCategory
+- MenuItemRow
+- CafeInfo
+
+### Після рефакторингу
+- FilterableMenuTable
+- SearchBar
+- MenuTable
+- MenuCategory
+- MenuItemRow
+
+Після перенесення стану App та CafeInfo більше не повинні
+повторно рендеритися під час зміни фільтрів.
