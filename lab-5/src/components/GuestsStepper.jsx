@@ -2,7 +2,6 @@ const MIN = 1
 const MAX = 8
 
 export default function GuestsStepper({ value, onChange }) {
-
   function handleDecrement() {
     onChange(Math.max(MIN, value - 1))
   }
@@ -37,4 +36,3 @@ export default function GuestsStepper({ value, onChange }) {
     </fieldset>
   )
 }
-  

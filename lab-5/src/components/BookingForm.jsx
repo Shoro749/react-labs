@@ -26,7 +26,7 @@ export default function BookingForm() {
     setGuests(2)
     nameRef.current.focus()
   }
-  
+
   return (
     <form
       className="booking-form"
