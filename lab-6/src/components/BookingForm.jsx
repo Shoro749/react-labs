@@ -1,7 +1,6 @@
 import { startTransition, useActionState } from 'react'
 import { Controller, useForm, useWatch } from 'react-hook-form'
 import GuestsStepper from './GuestsStepper.jsx'
-import { describeBooking } from '../describeBooking.js'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { bookingSchema } from '../bookingSchema.js'
 import { sendBooking } from '../api.js'
