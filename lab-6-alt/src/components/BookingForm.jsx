@@ -47,14 +47,11 @@ export default function BookingForm() {
     submitCount,
     isValidating,
     handleSubmit,
-    handleBlur,
-    handleChange,
     getFieldProps,
     setFieldValue,
     resetForm,
   } = formik
 
-  // Після невдалої спроби надсилання фокусуємо перше поле з помилкою.
   useEffect(() => {
     if (submitCount === 0 || isValidating) return
 

@@ -55,7 +55,6 @@ export const bookingSchema = yup
       .string()
       .trim()
       .max(200, 'Коментар — до 200 символів')
-      .required(),
   })
   .test('future-time-today', function (booking) {
     if (!booking?.date || !booking?.time) return true
