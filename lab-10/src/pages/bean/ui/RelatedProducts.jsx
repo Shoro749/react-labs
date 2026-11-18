@@ -1,4 +1,4 @@
-import BeanCard from '../../shared/BeanCard.jsx'
+import { BeanCard } from '../../../widgets/bean-card/index.js'
 import { useShowMore } from './useShowMore.js'
 
 export default function RelatedProducts({ products }) {

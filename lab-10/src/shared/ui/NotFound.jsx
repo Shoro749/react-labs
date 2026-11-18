@@ -1,4 +1,4 @@
-import { paths } from './paths.js'
+import { paths } from '../lib/paths.js'
 import Link from './Link.jsx'
 
 export default function NotFound() {

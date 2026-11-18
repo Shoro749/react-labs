@@ -1,6 +1,6 @@
-import Link from '../../shared/Link.jsx'
-import { paths } from '../../shared/paths.js'
-import { useCart } from '../../shared/useCart.js'
+import { useCart } from '../../../features/cart/index.js'
+import Link from '../../../shared/ui/Link.jsx'
+import { paths } from '../../../shared/lib/paths.js'
 import CartLine from './CartLine.jsx'
 
 export default function CartPage() {
