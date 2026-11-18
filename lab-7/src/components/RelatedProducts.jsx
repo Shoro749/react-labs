@@ -1,24 +1,39 @@
-import ShowMore from './ShowMore.jsx'
+import { useShowMore } from '../hooks/useShowMore.js'
 import FavoriteButton from './FavoriteButton.jsx'
 
 export default function RelatedProducts({ products }) {
+  const { visibleItems, hiddenCount, showMore, collapse } = useShowMore(products, 4)
+
+  const isExpanded = hiddenCount === 0
+
+  function handleClick() {
+    if (isExpanded) {
+      collapse()
+    } else {
+      showMore()
+    }
+  }
+
   return (
     <section className="related" aria-labelledby="related-title">
       <h2 id="related-title">Схожі товари</h2>
-      <ShowMore items={products} step={4}>
-        {(visibleProducts) => (
-          <ul className="related-list" aria-labelledby="related-title">
-            {visibleProducts.map((item) => (
-              <li key={item.id} className="related-card">
-                <h3>{item.name}</h3>
-                <p>{item.notes}</p>
-                <p className="price">{item.price} грн</p>
-                <FavoriteButton productId={item.id} name={item.name} />
-              </li>
-            ))}
-          </ul>
+      <ul className="related-list" aria-labelledby="related-title">
+        {visibleItems.map((item) => (
+          <li key={item.id} className="related-card">
+            <h3>{item.name}</h3>
+            <p>{item.notes}</p>
+            <p className="price">{item.price} грн</p>
+            <FavoriteButton productId={item.id} name={item.name} />
+          </li>
+        ))}
+        {products.length > 4 && (
+          <li className="related-more">
+            <button type="button" className="show-more" onClick={handleClick}>
+              {isExpanded ? 'Згорнути' : `Показати ще ${Math.min(4, hiddenCount)}`}
+            </button>
+          </li>
         )}
-      </ShowMore>
+      </ul>
     </section>
   )
 }
