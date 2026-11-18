@@ -1,5 +1,5 @@
-import { useShowMore } from '../hooks/useShowMore.js'
-import BeanCard from './BeanCard.jsx'
+import BeanCard from '../../shared/BeanCard.jsx'
+import { useShowMore } from './useShowMore.js'
 
 export default function RelatedProducts({ products }) {
   const { visibleItems, hiddenCount, showMore, collapse } = useShowMore(
