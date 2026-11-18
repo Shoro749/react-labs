@@ -16,6 +16,56 @@
  *
  * Вимоги — у тестах tests/Tabs.children.test.jsx і tests/Tabs.a11y.test.jsx.
  */
-export default function Tabs() {
-  throw new Error('Not implemented: Tabs')
+import { createContext, use, useState } from 'react'
+
+const TabsContext = createContext(null)
+
+function useTabsContext() {
+  const context = use(TabsContext)
+  if (!context) {
+    throw new Error('Tabs parts must be used inside <Tabs>')
+  }
+  return context
 }
+
+function Tabs({ defaultValue, children }) {
+  const [value, setValue] = useState(defaultValue)
+
+  return (
+    <TabsContext value={{ value, setValue }}>
+      <div className="tabs">{children}</div>
+    </TabsContext>
+  )
+}
+
+function List({ children, ...props }) {
+  return (
+    <div className="tab-list" {...props}>
+      {children}
+    </div>
+  )
+}
+
+function Tab({ value, children }) {
+  const context = useTabsContext()
+  return (
+    <button
+      type="button"
+      className={context.value === value ? 'active' : ''}
+      onClick={() => context.setValue(value)}
+    >
+      {children}
+    </button>
+  )
+}
+
+function Panel({ value, children }) {
+  const context = useTabsContext()
+  return <div hidden={context.value !== value}>{children}</div>
+}
+
+Tabs.List = List
+Tabs.Tab = Tab
+Tabs.Panel = Panel
+
+export default Tabs
