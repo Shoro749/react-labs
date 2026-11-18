@@ -30,7 +30,9 @@ export default function ShowMore({ items, step, children }) {
       {children(visibleItems)}
       {items.length > step && (
         <button type="button" className="show-more" onClick={handleClick}>
-          {isExpanded ? 'Згорнути' : `Показати ще ${Math.min(step, hiddenCount)}`}
+          {isExpanded
+            ? 'Згорнути'
+            : `Показати ще ${Math.min(step, hiddenCount)}`}
         </button>
       )}
     </>

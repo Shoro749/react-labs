@@ -2,7 +2,10 @@ import { useShowMore } from '../hooks/useShowMore.js'
 import FavoriteButton from './FavoriteButton.jsx'
 
 export default function RelatedProducts({ products }) {
-  const { visibleItems, hiddenCount, showMore, collapse } = useShowMore(products, 4)
+  const { visibleItems, hiddenCount, showMore, collapse } = useShowMore(
+    products,
+    4,
+  )
 
   const isExpanded = hiddenCount === 0
 
@@ -29,7 +32,9 @@ export default function RelatedProducts({ products }) {
         {products.length > 4 && (
           <li className="related-more">
             <button type="button" className="show-more" onClick={handleClick}>
-              {isExpanded ? 'Згорнути' : `Показати ще ${Math.min(4, hiddenCount)}`}
+              {isExpanded
+                ? 'Згорнути'
+                : `Показати ще ${Math.min(4, hiddenCount)}`}
             </button>
           </li>
         )}

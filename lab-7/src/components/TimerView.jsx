@@ -23,8 +23,7 @@ export default function TimerView({
   onStart,
   onPause,
   onReset,
-})
-{
+}) {
   let mainButtonText = 'Старт'
   let mainButtonHandler = onStart
 
