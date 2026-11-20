@@ -15,7 +15,7 @@
 | -------------------------- | --- | ----------------------------------------------------------------------------------------------------- |
 | За типом файлів (§4.3)     | 4   | src/store, src/hooks, src/components, src/pages                                                       |
 | За маршрутами (§4.4)       | 2   | src/shared, src/routes/cart                                                                           |
-| За функціональністю (§4.5) |     |                                                                                                       |
+| За функціональністю (§4.5) | 1   | src/cart                                                                                              |
 | FSD (§4.6)                 | 4   | src/features/cart/model, src/features/cart/ui, src/pages/cart/ui, src/widgets/header/ui               |
 | Пакет (§4.9)               | 5   | packages/cart/state, packages/cart/ui, src/features/cart/ui, src/pages/cart/ui, src/widgets/header/ui |
 
