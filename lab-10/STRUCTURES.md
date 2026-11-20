@@ -11,13 +11,13 @@
 `AddToCartButton`, `CartLine`, сторінка кошика й шапка з лічильником.
 «Тек» — скільки їх, «Теки» — їхні шляхи через кому.
 
-| Структура                  | Тек | Теки                                                                                    |
-| -------------------------- | --- | --------------------------------------------------------------------------------------- |
-| За типом файлів (§4.3)     | 4   | src/store, src/hooks, src/components, src/pages                                         |
-| За маршрутами (§4.4)       | 2   | src/shared, src/routes/cart                                                             |
-| За функціональністю (§4.5) |     |                                                                                         |
-| FSD (§4.6)                 | 4   | src/features/cart/model, src/features/cart/ui, src/pages/cart/ui, src/widgets/header/ui |
-| Пакет (§4.9)               |     |                                                                                         |
+| Структура                  | Тек | Теки                                                                                                  |
+| -------------------------- | --- | ----------------------------------------------------------------------------------------------------- |
+| За типом файлів (§4.3)     | 4   | src/store, src/hooks, src/components, src/pages                                                       |
+| За маршрутами (§4.4)       | 2   | src/shared, src/routes/cart                                                                           |
+| За функціональністю (§4.5) |     |                                                                                                       |
+| FSD (§4.6)                 | 4   | src/features/cart/model, src/features/cart/ui, src/pages/cart/ui, src/widgets/header/ui               |
+| Пакет (§4.9)               | 5   | packages/cart/state, packages/cart/ui, src/features/cart/ui, src/pages/cart/ui, src/widgets/header/ui |
 
 ## Вибір структури
 

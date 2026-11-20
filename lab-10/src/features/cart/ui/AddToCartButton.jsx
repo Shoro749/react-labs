@@ -1,4 +1,4 @@
-import { useCart } from '../model/useCart.js'
+import { useCart } from '@coffee/cart'
 import { withAnalytics } from '../../../shared/lib/withAnalytics.jsx'
 import Button from '../../../shared/ui/Button.jsx'
 
