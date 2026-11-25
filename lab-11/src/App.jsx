@@ -5,7 +5,11 @@ import OrderBoard from './components/OrderBoard.jsx'
 import OrderComposer from './components/OrderComposer.jsx'
 import OrderDetails from './components/OrderDetails.jsx'
 import { loadOrders } from './data/orders.js'
-import { createInitialState, queueReducer, selectOrder } from './model/queueReducer.js'
+import {
+  createInitialState,
+  queueReducer,
+  selectOrder,
+} from './model/queueReducer.js'
 
 const queueReducerWithUndo = withUndo(queueReducer)
 

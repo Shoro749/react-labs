@@ -39,7 +39,7 @@ export function createInitialState(orders) {
   for (const order of orders) {
     const { customer, ...orderData } = order
 
-    ordersById[order.id] = { ...orderData, customerId: customer.id, }
+    ordersById[order.id] = { ...orderData, customerId: customer.id }
 
     orderIds.push(order.id)
 
@@ -52,7 +52,7 @@ export function createInitialState(orders) {
   }
 
   return {
-    orders: {byId: ordersById, ids: orderIds },
+    orders: { byId: ordersById, ids: orderIds },
     customers: { byId: customersById, ids: customerIds },
     lastNumber,
   }
@@ -192,5 +192,5 @@ export function selectOrder(state, id) {
 
   if (!order) return undefined
 
-  return { ...order, customer: state.customers.byId[order.customerId], }
+  return { ...order, customer: state.customers.byId[order.customerId] }
 }

@@ -58,7 +58,8 @@ export function withUndo(reducer, limit = 20) {
           return history
         }
         return {
-          past: limit > 0 ? [...history.past, history.present].slice(-limit) : [],
+          past:
+            limit > 0 ? [...history.past, history.present].slice(-limit) : [],
           present: nextPresent,
           future: [],
         }

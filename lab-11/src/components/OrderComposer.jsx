@@ -5,13 +5,10 @@ import DraftItem from './DraftItem.jsx'
 
 export default function OrderComposer({ onPlace }) {
   const titleId = useId()
-  
+
   const [draft, dispatch] = useReducer(draftReducer, emptyDraft)
 
-  const total = draft.items.reduce(
-    (sun, item) => sun + priceOf(item),
-    0,
-  )
+  const total = draft.items.reduce((sun, item) => sun + priceOf(item), 0)
 
   function handleNameChange(e) {
     dispatch({
@@ -43,7 +40,6 @@ export default function OrderComposer({ onPlace }) {
       milk,
     })
   }
-
 
   function handleSyrupToggle(itemId, syrup) {
     dispatch({
