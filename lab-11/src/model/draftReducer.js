@@ -1,3 +1,4 @@
+import { defaultMilk } from '../data/menu.js'
 /**
  * Чернетка нового замовлення — стан форми «Нове замовлення»:
  *   { customerName: 'Оля', items: [{ id, drink, size, milk, syrups }] }
@@ -6,10 +7,6 @@
  * Порожня чернетка заморожена (Object.freeze), як і її масив items:
  * ред'юсер не може її змінити, лише повернути нову чернетку.
  */
-export const emptyDraft = Object.freeze({
-  customerName: '',
-  items: Object.freeze([]),
-})
 
 /**
  * Ред'юсер форми «Нове замовлення». Отримує чернетку й дію, повертає нову
@@ -38,6 +35,74 @@ export const emptyDraft = Object.freeze({
  * Поки що кидає помилку. Вимоги — у тестах tests/draftReducer.test.js і
  * tests/OrderComposer.test.jsx.
  */
-export function draftReducer(/* state, action */) {
-  throw new Error('Not implemented: draftReducer')
+export const emptyDraft = Object.freeze({
+  customerName: '',
+  items: Object.freeze([]),
+})
+
+export function draftReducer(state, action) {
+  switch (action.type) {
+    case 'customer_changed':
+      return { ...state, customerName: action.customerName }
+
+    case 'drink_added': {
+      const newItem = {
+        id: action.id,
+        drink: action.drink,
+        size: 'M',
+        milk: defaultMilk(action.drink),
+        syrups: [],
+      }
+
+      return {
+        ...state,
+        items: [...state.items, newItem],
+      }
+    }
+
+    case 'size_chosen':
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.itemId ? { ...item, size: action.size } : item,
+        ),
+      }
+
+    case 'milk_chosen':
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.itemId ? { ...item, milk: action.milk } : item,
+        ),
+      }
+
+    case 'syrup_toggled':
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          if (item.id !== action.itemId) return item
+
+          const hasSyrup = item.syrups.includes(action.syrup)
+
+          return {
+            ...item,
+            syrups: hasSyrup
+              ? item.syrups.filter((syrup) => syrup !== action.syrup)
+              : [...item.syrups, action.syrup],
+          }
+        }),
+      }
+
+    case 'item_removed':
+      return {
+        ...state,
+        items: state.items.filter((item) => item.id !== action.itemId),
+      }
+
+    case 'draft_cleared':
+      return emptyDraft
+
+    default:
+      throw new Error(`Unknown action: ${action.type}`)
+  }
 }
