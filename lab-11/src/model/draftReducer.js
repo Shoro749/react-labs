@@ -43,7 +43,7 @@ export const emptyDraft = Object.freeze({
 export function draftReducer(state, action) {
   switch (action.type) {
     case 'customer_changed':
-      return { ...state, customerName: action.customerName }
+      return { ...state, customerName: action.name }
 
     case 'drink_added': {
       const newItem = {
