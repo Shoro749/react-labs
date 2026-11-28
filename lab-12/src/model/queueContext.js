@@ -1,4 +1,6 @@
 import { createContext, use } from 'react'
+import { useStore } from 'zustand'
+import { useShallow } from 'zustand/react/shallow'
 /**
  * Контексти черги замовлень і хуки, які їх читають.
  *
@@ -16,24 +18,31 @@ import { createContext, use } from 'react'
  * Поки що хуки кидають помилку. Вимоги — у тестах
  * tests/queueContext.test.jsx і tests/QueueProvider.test.jsx.
  */
+export const QueueStoreContext = createContext(null)
 
-export const QueueContext = createContext(null)
-export const QueueDispatchContext = createContext(null)
+function useQueueStore() {
+  const store = use(QueueStoreContext)
+  if (store === null) {
+    throw new Error('Queue hooks must be used within a QueueProvider')
+  }
+  return store
+}
 
 /** { queue, canUndo, canRedo } з найближчого QueueProvider. */
 export function useQueue() {
-  const context = use(QueueContext)
-  if (context === null) {
-    throw new Error('useQueue must be used within a QueueProvider')
-  }
-  return context
+  const store = useQueueStore()
+  return useStore(
+    store,
+    useShallow((state) => ({
+      queue: state.history.present,
+      canUndo: state.history.past.length > 0,
+      canRedo: state.history.future.length > 0,
+    })),
+  )
 }
 
 /** dispatch ред'юсера черги з найближчого QueueProvider. */
 export function useQueueDispatch() {
-  const context = use(QueueDispatchContext)
-  if (context === null) {
-    throw new Error('useQueueDispatch must be used within a QueueProvider')
-  }
-  return context
+  const store = useQueueStore()
+  return useStore(store, (state) => state.dispatch)
 }
