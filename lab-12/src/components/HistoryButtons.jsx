@@ -9,7 +9,7 @@ import { useQueue, useQueueDispatch } from '../model/queueContext.js'
 export default function HistoryButtons() {
   const { canUndo, canRedo } = useQueue()
   const dispatch = useQueueDispatch()
-  
+
   const undoRef = useRef(null)
   const redoRef = useRef(null)
 
