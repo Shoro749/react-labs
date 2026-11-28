@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import { flushSync } from 'react-dom'
-import { describeItem } from '../data/menu.js'
+import { describeItem, hasStopped } from '../data/menu.js'
+import { useStopList } from '../model/stopListContext.js'
 import { useQueueDispatch } from '../model/queueContext.js'
 
 // Кнопка наступного кроку в кожній колонці, крім «Видані».
@@ -9,7 +10,13 @@ const nextStep = { new: 'Почати', brewing: 'Готово', ready: 'Вид�
 export default function OrderCard({ order, onOpen }) {
   const titleId = useId()
   const dispatch = useQueueDispatch()
-  
+  const { stopped } = useStopList()
+
+  const hasStoppedItems = order.items.some((item) => hasStopped(item, stopped))
+
+  const showStopNote =
+    (order.status === 'new' || order.status === 'brewing') && hasStoppedItems
+
   const isBrewing = order.status === 'brewing'
   const allDone = order.items.every((item) => item.done)
   const canCancel = order.status === 'new' || isBrewing
@@ -61,6 +68,7 @@ export default function OrderCard({ order, onOpen }) {
           </li>
         ))}
       </ul>
+      {showStopNote && <p className="stop-note">Є позиції зі стоп-листа</p>}
       <div className="card-actions">
         {nextStep[order.status] && (
           <button
